@@ -92,5 +92,12 @@ public class Inventario {
                 .filter(pp -> pp.diasParaExp() <= 15)
                 .collect(Collectors.toList());
     }
+    public int totalProductos() {
+        return productos.size();
+    }
+
+    public double espacioDisponible() {
+        return espacioAlmacenamiento - espacioUtilizado;
+    }
 
 }

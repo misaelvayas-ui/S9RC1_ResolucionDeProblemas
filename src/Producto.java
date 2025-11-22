@@ -80,7 +80,7 @@ public class Producto {
         return cantidadStock <= stockMinimo;
     }
 
-    public void agregarReabas(int cantidad) {
+    public void agregarStock(int cantidad) {
         if (cantidad > 0) {
             cantidadStock += cantidad;
             if (cantidadStock > stockMaximo) {
