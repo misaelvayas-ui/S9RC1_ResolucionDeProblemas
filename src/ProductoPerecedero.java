@@ -5,8 +5,8 @@ public class ProductoPerecedero extends Producto{
 
     private LocalDate fechaExpiracion;
 
-    public ProductoPerecedero(String nombre, int id, int cantidadstock, int stockMinimo, int stockMaximo, double precio, LocalDate fechaExpiracion) {
-        super(nombre, id, cantidadstock, stockMinimo, stockMaximo, precio);
+    public ProductoPerecedero(String nombre, int id,double precio, int cantidadstock, int stockMinimo, int stockMaximo, LocalDate fechaExpiracion) {
+        super(nombre, id, precio, cantidadstock, stockMinimo, stockMaximo);
         this.fechaExpiracion = fechaExpiracion;
     }
 
@@ -29,9 +29,9 @@ public class ProductoPerecedero extends Producto{
     }
 
     @Override
-    public  boolean necesitaReabas() {
+    public  boolean necesitaReabastecimiento() {
         // Productos perecederos necesitan reabas... urgentemente
-        return super.necesitaReabas() || diasParaExp() <= 7;
+        return super.necesitaReabastecimiento() || diasParaExp() <= 7;
     }
 
     @Override

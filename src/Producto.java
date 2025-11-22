@@ -2,14 +2,14 @@ import java.time.LocalDate;
 
 public class Producto {
     private String nombre;
-    private int id, cantidadstock, stockMinimo, stockMaximo;
+    private int id, cantidadStock, stockMinimo, stockMaximo;
     private double precio;
     private LocalDate fechaUltReabastecimiento;
 
-    public Producto(String nombre, int id, int cantidadstock, int stockMinimo, int stockMaximo, double precio) {
+    public Producto(String nombre, int id, double precio, int cantidadStock, int stockMinimo, int stockMaximo ) {
         this.nombre = nombre;
         this.id = id;
-        this.cantidadstock = cantidadstock;
+        this.cantidadStock = cantidadStock;
         this.stockMinimo = stockMinimo;
         this.stockMaximo = stockMaximo;
         this.precio = precio;
@@ -34,12 +34,12 @@ public class Producto {
         this.id = id;
     }
 
-    public int getCantidadstock() {
-        return cantidadstock;
+    public int getCantidadStock() {
+        return cantidadStock;
     }
 
-    public void setCantidadstock(int cantidadstock) {
-        this.cantidadstock = cantidadstock;
+    public void setCantidadStock(int cantidadstock) {
+        this.cantidadStock = cantidadstock;
     }
 
     public int getStockMinimo() {
@@ -76,35 +76,35 @@ public class Producto {
 
     //Metodos de funcionalidad
 
-    public boolean necesitaReabas() {
-        return cantidadstock <= stockMinimo;
+    public boolean necesitaReabastecimiento() {
+        return cantidadStock <= stockMinimo;
     }
 
     public void agregarReabas(int cantidad) {
         if (cantidad > 0) {
-            cantidadstock += cantidad;
-            if (cantidadstock > stockMaximo) {
-                cantidadstock = stockMaximo;
+            cantidadStock += cantidad;
+            if (cantidadStock > stockMaximo) {
+                cantidadStock = stockMaximo;
             }
             fechaUltReabastecimiento = LocalDate.now();
         }
     }
 
     public boolean retirarStock(int cantidad) {
-        if (cantidad > 0 && cantidad <= cantidadstock) {
-            cantidadstock -= cantidad;
+        if (cantidad > 0 && cantidad <= cantidadStock) {
+            cantidadStock -= cantidad;
             return true;
         }
         return false;
     }
 
     public double calcularValorFinal() {
-        return precio * cantidadstock;
+        return precio * cantidadStock;
     }
 
     @Override
     public String toString() {
         return String.format("ID: %d | %s | Precio: $%.2f | Stock: %d | Min: %d | Max: %d",
-                id, nombre, precio, cantidadstock, stockMinimo, stockMaximo);
+                id, nombre, precio, cantidadStock, stockMinimo, stockMaximo);
     }
 }
